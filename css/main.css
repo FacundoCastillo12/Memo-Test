@@ -1,0 +1,55 @@
+body {
+    margin: 0;
+    background-color: rgb(71, 65, 65) !important;;
+}
+
+.marco{
+    width: 250px;
+    height: 250px;
+    padding: 3px;
+    border-color: rgb(0, 189, 236);
+    border-radius: 20px;
+    background: url(../img/logo.jpg)  center;
+    
+}
+
+#imagen1, #imagen2,#imagen3,#imagen4,#imagen5,#imagen6,#imagen7,#imagen8,#imagen9,#imagen10,#imagen11,#imagen12{
+    padding-bottom: 10px;
+    height: 250px;
+    border-radius: 20px;
+    width: 100%;
+    opacity: 1;
+    transition: opacity 500ms;
+}
+
+#iniciar-juego, #reiniciar-juego{
+    width: 50px;
+    height: 50px;
+    width: 100%;
+    font-size: 22px;
+    margin-left: 8px;
+    margin-top: 30px;
+    background-color: green;
+}
+
+#barra-informativa {
+    margin-right: 20px;
+    border: 20px;
+
+}
+#notificaciones,#ronda{
+    width: auto;
+    height: auto;
+    width: 100%
+}
+
+
+#iniciar-juego:hover{
+    background-color: aqua;
+    color: black;
+
+}
+#reiniciar-juego:hover{
+    background-color: aqua;
+    color: black;
+}
