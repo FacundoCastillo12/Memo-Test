@@ -12,14 +12,14 @@
 		/>
 	</head>
 	<body>
-		<div class="text-center bg-warning text-white">
-			<h1>Juguemos a Memo Test</h1>
-			<p>Hola</p>
+		<div class="titulo container text-center bg-warning text-white">
+			<h1>Memo test de The Witcher</h1>
 		</div>
-		<div class="d-flex container-md justify-content-center">
-			<div id="barra-informativa" class="d-inline-flex p-2 bg-warning">
-				<div class="d-flex flex-row">
-					<div id="fila-informativa" class="flex-row">
+
+		<div class="d-md-flex justify-content-center">
+			<div id="barra-informativa" class="d-md-inline-flex p-2 bg-warning">
+				<div class="d-md-flex flex-md-row container">
+					<div id="fila-informativa" class="flex-md-row">
 						<div class="col-sm mb-3 me-3">
 							<button
 								type="button"
@@ -33,8 +33,8 @@
 							<p></p>
 						</div>
 						<div class="col-sm mb-3">
-							<p id="movimientos" class="text-center">
-								Movimientos realizados: <strong>0</strong>
+							<p id="texto-movimientos" class="text-center">
+								Movimientos realizados: <strong id="movimientos">0</strong>
 							</p>
 						</div>
 						<div class="col-sm mb-3">
@@ -49,7 +49,7 @@
 						</div>
 						<div class="col-sm mb-3">
 							<p id="texto-tiempo" class="text-center">
-								Tiempo de trascurrido: <strong id="tiempo-trascurrido">0</strong>
+								Tiempo de trascurrido: <strong>0</strong>:<strong id="minutos">0</strong>:<strong id="segundos">0</strong>
 							</p>
 						</div>
 						<div class="col-sm mb-3 me-3">
@@ -64,7 +64,8 @@
 					</div>
 				</div>
 			</div>
-			<div id="primera-fila" class="flex-row">
+
+			<div id="primera-fila" class="flex-md-row">
 				<div class="col-sm mb-3 me-3">
 					<button id="marco1" class="marco">
 						<img id="imagen1" class="img-fluid imagenes" src="img/ciri.jpg" />
@@ -85,7 +86,7 @@
 					</button>
 				</div>
 			</div>
-			<div id="segunda-fila" class="flex-row">
+			<div id="segunda-fila" class="flex-md-row">
 				<div class="col-sm mb-3 me-3">
 					<button id="marco4" class="marco">
 						<img
@@ -110,7 +111,7 @@
 					</button>
 				</div>
 			</div>
-			<div id="tercera-fila" class="flex-row">
+			<div id="tercera-fila" class="flex-md-row">
 				<div class="col-sm mb-3 me-3">
 					<button id="marco7" class="marco">
 						<img
@@ -135,7 +136,7 @@
 					</button>
 				</div>
 			</div>
-			<div id="cuarta-fila" class="flex-row">
+			<div id="cuarta-fila" class="flex-md-row">
 				<div class="col-sm mb-3 me-3">
 					<button id="marco10" class="marco">
 						<img
@@ -160,6 +161,9 @@
 					</button>
 				</div>
 			</div>
+		</div>
+		<div id="ganar" class="victoria oculto"> 
+			<h2>Has ganado!</h2>
 		</div>
 		<footer>
 			<div><p class="text-center">Aqui el div de footer</p></div>
