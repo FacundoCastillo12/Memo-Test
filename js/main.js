@@ -4,26 +4,29 @@ let numeroDeMovimientos = 0;
 let numeroDeAciertos = 0;
 let numeroDeFallos = 0;
 let cartasElegidas = 0;
-let tiempoTrascurrido = 0;
+let tiempoTrascurrido;
 let marcoId = [];
 let imagenId = [];
 
 bloquearInputDelUsuario();
+ordenarMarcosInicial();
 document.querySelector('#iniciar-juego').onclick = iniciarMemoTest;
 document.querySelector('#reiniciar-juego').onclick = reiniciar;
 
 function iniciarMemoTest() {
 	reiniciar();
 	permitirSelecionarTarjeta();
+	ordenarMarcosInicial();
+	desbloquearInputDelUsuario();
+	iniciarCronometro();
+}
+function ordenarMarcosInicial() {
 	let imagenesAleatorias = organizarImagenes();
 	reorganizarCuadros(imagenesAleatorias);
-	desbloquearInputDelUsuario();
 }
-
 function reiniciar() {
 	ocultarTodasLasImagenes();
 	mostrarTodasLasImagenes();
-	mostrarTodosLosBotones();
 	reiniciarSecuencias();
 	bloquearInputDelUsuario();
 	impedirSelecionarTarjeta();
@@ -31,8 +34,10 @@ function reiniciar() {
 	numeroDeAciertos = 0;
 	numeroDeFallos = 0;
 	numeroDeMovimientos = 0;
-	tiempoTrascurrido = 0;
 	cargarContadores();
+	reiniciarTextoTiempo();
+	detenerCronometro();
+	mostrarTodosLosMarcos();
 }
 
 function reorganizarCuadros(imagenes) {
@@ -47,7 +52,7 @@ function reorganizarCuadros(imagenes) {
 
 function controlarInputUsuario(event) {
 	if (cartasElegidas <= 2) {
-		eleccionUsuario(event);
+		manejarEleccionUsuario(event);
 		if (cartasElegidas === 2) {
 			bloquearInputDelUsuario();
 			impedirSelecionarTarjeta();
@@ -57,12 +62,13 @@ function controlarInputUsuario(event) {
 	if (numeroDeAciertos === 6) {
 		mostrarMensajeGanar();
 		bloquearInputDelUsuario();
+		detenerCronometro();
 	}
 }
 
-function eleccionUsuario(e) {
+function manejarEleccionUsuario(e) {
 	cartasElegidas++;
-	const $personaje = e.target.alt;
+	const $personaje = e.target.name;
 	const $secuenciaId = e.target.id;
 	if (cartasElegidas === 1) {
 		primeraSecuencia.push($personaje);
@@ -71,7 +77,6 @@ function eleccionUsuario(e) {
 		mostrarImagen(e.target.id);
 		bloquearTarjeta(e.currentTarget.id);
 		reproducirAudioSeleccionar();
-		numeroDeMovimientos++;
 	} else if (cartasElegidas === 2) {
 		segundaSecuencia.push($personaje);
 		imagenId.push($secuenciaId);
@@ -87,6 +92,8 @@ function verificarAciertoOIncorrecto() {
 	if (primeraSecuencia[0] === segundaSecuencia[0]) {
 		numeroDeAciertos++;
 		reproducirAudioAcierto();
+		ocultarMarco(marcoId[0]);
+		ocultarMarco(marcoId[1]);
 		permitirSelecionarTarjeta();
 		reiniciarSecuencias();
 		desbloquearInputDelUsuario();
@@ -103,7 +110,7 @@ function verificarAciertoOIncorrecto() {
 			permitirSelecionarTarjeta();
 			reiniciarSecuencias();
 			desbloquearInputDelUsuario();
-		}, 1000);
+		}, 500);
 	}
 	cargarContadores();
 }
@@ -126,9 +133,11 @@ function agregarImagenAMarcos(numero) {
 
 function añadirNuevaImagen(numero, imagenes) {
 	let nuevoNumero = numero + 1;
-	const remplazarImagen = document.querySelector(`#imagen${nuevoNumero}`);
-	remplazarImagen.src = `img/${imagenes[numero]}.jpg`;
-	remplazarImagen.alt = `${imagenes[numero]}`;
+	const $remplazarImagen = document.querySelector(`#imagen${nuevoNumero}`);
+	const $nombreMarco = document.querySelector(`#marco${nuevoNumero}`);
+	$remplazarImagen.src = `img/${imagenes[numero]}.jpg`;
+	$remplazarImagen.name = `${imagenes[numero]}`;
+	$nombreMarco.name = (`${imagenes[numero]}`)
 }
 
 function borrarImagenes() {
@@ -140,22 +149,17 @@ function borrarImagenes() {
 function organizarImagenes() {
 	let imagenesOriginales = [
 		'ciri',
-		'ciri',
-		'gaskier',
 		'gaskier',
 		'gerald',
-		'gerald',
-		'vesemir',
 		'vesemir',
 		'triss',
-		'triss',
-		'yennefer',
 		'yennefer',
 	];
-	imagenesOriginales.sort(function () {
+	let imagenes = imagenesOriginales.concat(imagenesOriginales);
+	imagenes.sort(function () {
 		return Math.random() - 0.5;
 	});
-	return imagenesOriginales;
+	return imagenes;
 }
 
 function bloquearInputDelUsuario() {
@@ -168,7 +172,6 @@ function desbloquearInputDelUsuario() {
 		$marco.onclick = controlarInputUsuario;
 	});
 }
-
 function ocultarImagenes(numero) {
 	if (/^[0-9]+$/.test(numero)) {
 		let nuevoNumero = numero + 1;
@@ -191,19 +194,6 @@ function mostrarImagen(id) {
 		$imagen.classList.remove('desaparecer');
 	}
 }
-function mostrarTodasLasImagenes() {
-	const $imagenes = document.querySelectorAll('.imagenes');
-	for (let i = 0; i < $imagenes.length; i++) {
-		mostrarImagen(i);
-	}
-}
-function ocultarTodasLasImagenes() {
-	const $imagenes = document.querySelectorAll('.imagenes');
-	for (let i = 0; i < $imagenes.length; i++) {
-		ocultarImagenes(i);
-	}
-}
-
 function mostrarMarco(id) {
 	if (/^[0-9]+$/.test(id)) {
 		if (id === 0 || 11) {
@@ -230,12 +220,26 @@ function ocultarMarco(id) {
 		$boton.classList.add('ocultar');
 	}
 }
-function mostrarTodosLosBotones() {
-	const $botones = document.querySelectorAll('.marco');
-	for (let i = 0; i < $botones.length; i++) {
+function mostrarTodosLosMarcos() {
+	const $imagenes = document.querySelectorAll('.marco');
+	for (let i = 0; i < $imagenes.length; i++) {
 		mostrarMarco(i);
 	}
 }
+
+function mostrarTodasLasImagenes() {
+	const $imagenes = document.querySelectorAll('.imagenes');
+	for (let i = 0; i < $imagenes.length; i++) {
+		mostrarImagen(i);
+	}
+}
+function ocultarTodasLasImagenes() {
+	const $imagenes = document.querySelectorAll('.imagenes');
+	for (let i = 0; i < $imagenes.length; i++) {
+		ocultarImagenes(i);
+	}
+}
+
 function impedirSelecionarTarjeta() {
 	document.querySelectorAll('.marco').forEach(function ($marco) {
 		$marco.classList.add('bloquear');
@@ -287,4 +291,32 @@ function reproducirAudioIncorrecto() {
 function reproducirAudioSeleccionar() {
 	const AUDIO = new Audio('./audio/seleccionar.mp3');
 	AUDIO.play();
+}
+
+function detenerCronometro() {
+	clearInterval(tiempoTrascurrido);
+}
+function iniciarCronometro() {
+	let contadorSegundos = 0;
+	let contadorMinutos = 0;
+	const $segundos = document.querySelector('#segundos');
+	const $minutos = document.querySelector('#minutos');
+	tiempoTrascurrido = setInterval(function () {
+		if (contadorSegundos === 60) {
+			contadorSegundos = 0;
+			contadorMinutos++;
+			if (contadorMinutos === 0) {
+				contadorMinutos = 0;
+			}
+		}
+		$segundos.innerHTML = contadorSegundos;
+		$minutos.innerHTML = contadorMinutos;
+		contadorSegundos++;
+	}, 1000);
+}
+function reiniciarTextoTiempo() {
+	const $segundos = document.querySelector('#segundos');
+	const $minutos = document.querySelector('#minutos');
+	$segundos.innerHTML = '0';
+	$minutos.innerHTML = '0';
 }
