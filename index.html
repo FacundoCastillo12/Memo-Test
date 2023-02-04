@@ -5,11 +5,17 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<title>Memo test</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+			crossorigin="anonymous"
+		/>
+		<link rel="shortcut icon" href="#" />
 		<link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 	</head>
 	<body>
-		<div class="titulo container text-center bg-warning text-white">
+		<div class="titulo container text-center bg-warning text-white mb-4">
 			<h1>Memo test de The Witcher</h1>
 		</div>
 
@@ -46,7 +52,8 @@
 						</div>
 						<div class="col-sm mb-3">
 							<p id="texto-tiempo" class="text-center">
-								Tiempo de trascurrido: <strong>0</strong>:<strong id="minutos">0</strong>:<strong id="segundos">0</strong>
+								Tiempo de trascurrido: <strong>0</strong>:<strong id="minutos"
+									>0</strong>:<strong id="segundos">0</strong>
 							</p>
 						</div>
 						<div class="col-sm mb-3 me-3">
@@ -61,111 +68,123 @@
 					</div>
 				</div>
 			</div>
-
-			<div id="primera-fila" class="flex-md-row">
-				<div class="col-sm mb-3 me-3">
-					<button id="marco1" class="marco">
-						<img id="imagen1" class="img-fluid imagenes" src="img/ciri.jpg" />
-					</button>
+			<div id="tablero" class="d-md-flex justify-content-center">
+				<div id="primera-fila" class="flex-md-row filas">
+					<div class="col-sm mb-3 me-3">
+						<button id="marco1" class="marco">
+							<img id="imagen1" class="img-fluid imagenes" src="img/ciri.jpg" />
+						</button>
+					</div>
+					<div class="col-sm mb-3">
+						<button id="marco2" class="marco">
+							<img
+								id="imagen2"
+								class="img-fluid imagenes"
+								src="img/gaskier.jpg"
+							/>
+						</button>
+					</div>
+					<div class="col-sm mb-3">
+						<button id="marco3" class="marco">
+							<img
+								id="imagen3"
+								class="img-fluid imagenes"
+								src="img/gerald.jpg"
+							/>
+						</button>
+					</div>
 				</div>
-				<div class="col-sm mb-3">
-					<button id="marco2" class="marco">
-						<img 
-							id="imagen2"
-							class="img-fluid imagenes"
-							src="img/gaskier.jpg"
-						/>
-					</button>
+				<div id="segunda-fila" class="flex-md-row filas">
+					<div class="col-sm mb-3 me-3">
+						<button id="marco4" class="marco">
+							<img
+								id="imagen4"
+								class="img-fluid imagenes"
+								src="img/vesemir.jpg"
+							/>
+						</button>
+					</div>
+					<div class="col-sm mb-2">
+						<button id="marco5" class="marco">
+							<img
+								id="imagen5"
+								class="img-fluid imagenes"
+								src="img/triss.jpg"
+							/>
+						</button>
+					</div>
+					<div class="col-sm mb-3">
+						<button id="marco6" class="marco">
+							<img
+								id="imagen6"
+								class="img-fluid imagenes"
+								src="img/yennefer.jpg"
+							/>
+						</button>
+					</div>
 				</div>
-				<div class="col-sm mb-3">
-					<button id="marco3" class="marco">
-						<img id="imagen3" class="img-fluid imagenes" src="img/gerald.jpg" />
-					</button>
+				<div id="tercera-fila" class="flex-md-row filas">
+					<div class="col-sm mb-3 me-3">
+						<button id="marco7" class="marco">
+							<img
+								id="imagen7"
+								class="img-fluid imagenes"
+								src="img/yennefer.jpg"
+							/>
+						</button>
+					</div>
+					<div class="col-sm mb-3 me-3">
+						<button id="marco8" class="marco">
+							<img id="imagen8" class="img-fluid imagenes" src="img/ciri.jpg" />
+						</button>
+					</div>
+					<div class="col-sm mb-3 me-3">
+						<button id="marco9" class="marco">
+							<img
+								id="imagen9"
+								class="img-fluid imagenes"
+								src="img/vesemir.jpg"
+							/>
+						</button>
+					</div>
 				</div>
-			</div>
-			<div id="segunda-fila" class="flex-md-row">
-				<div class="col-sm mb-3 me-3">
-					<button id="marco4" class="marco">
-						<img
-							id="imagen4"
-							class="img-fluid imagenes"
-							src="img/vesemir.jpg"
-						/>
-					</button>
-				</div>
-				<div class="col-sm mb-3">
-					<button id="marco5" class="marco">
-						<img id="imagen5" class="img-fluid imagenes" src="img/triss.jpg" />
-					</button>
-				</div>
-				<div class="col-sm mb-3">
-					<button id="marco6" class="marco">
-						<img
-							id="imagen6"
-							class="img-fluid imagenes"
-							src="img/yennefer.jpg"
-						/>
-					</button>
-				</div>
-			</div>
-			<div id="tercera-fila" class="flex-md-row">
-				<div class="col-sm mb-3 me-3">
-					<button id="marco7" class="marco">
-						<img
-							id="imagen7"
-							class="img-fluid imagenes"
-							src="img/yennefer.jpg"
-						/>
-					</button>
-				</div>
-				<div class="col-sm mb-3 me-3">
-					<button id="marco8" class="marco">
-						<img id="imagen8" class="img-fluid imagenes" src="img/ciri.jpg" />
-					</button>
-				</div>
-				<div class="col-sm mb-3 me-3">
-					<button id="marco9" class="marco">
-						<img
-							id="imagen9"
-							class="img-fluid imagenes"
-							src="img/vesemir.jpg"
-						/>
-					</button>
-				</div>
-			</div>
-			<div id="cuarta-fila" class="flex-md-row">
-				<div class="col-sm mb-3 me-3">
-					<button id="marco10" class="marco">
-						<img
-							id="imagen10"
-							class="img-fluid imagenes"
-							src="img/gerald.jpg"
-						/>
-					</button>
-				</div>
-				<div class="col-sm mb-3 me-3">
-					<button id="marco11" class="marco">
-						<img
-							id="imagen11"
-							class="img-fluid imagenes"
-							src="img/gaskier.jpg"
-						/>
-					</button>
-				</div>
-				<div class="col-sm mb-3 me-3">
-					<button id="marco12" class="marco">
-						<img id="imagen12" class="img-fluid imagenes" src="img/triss.jpg" />
-					</button>
+				<div id="cuarta-fila" class="flex-md-row">
+					<div class="col-sm mb-3 me-3">
+						<button id="marco10" class="marco">
+							<img
+								id="imagen10"
+								class="img-fluid imagenes"
+								src="img/gerald.jpg"
+							/>
+						</button>
+					</div>
+					<div class="col-sm mb-3 me-3">
+						<button id="marco11" class="marco">
+							<img
+								id="imagen11"
+								class="img-fluid imagenes"
+								src="img/gaskier.jpg"
+							/>
+						</button>
+					</div>
+					<div class="col-sm mb-3 me-3">
+						<button id="marco12" class="marco">
+							<img
+								id="imagen12"
+								class="img-fluid imagenes"
+								src="img/triss.jpg"
+							/>
+						</button>
+					</div>
 				</div>
 			</div>
 		</div>
-		<div id="ganar" class="victoria oculto"> 
+		<div id="ganar" class="victoria oculto">
 			<h2>Has ganado!</h2>
 		</div>
 		<footer>
-			<div><p class="text-center">Aqui el div de footer</p></div>
+			<div><p class="text-center"></p></div>
 		</footer>
 		<script src="js/main.js"></script>
 	</body>
 </html>
-
