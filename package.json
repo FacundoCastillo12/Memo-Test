@@ -1,0 +1,30 @@
+{
+  "name": "memo-test",
+  "version": "1.0.0",
+  "description": "Juego Memo Test",
+  "main": "index.html",
+  "scripts": {
+    "empezar": "http-server",
+    "cypress-run": "cypress run",
+    "cypress-dev": "cypress open",
+    "test": "run-p start cypress-run",
+    "test-dev": "run-p start cypress-dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FacundoCastillo12/Memo-Test.git"
+  },
+  "author": "Facundo Castillo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FacundoCastillo12/Memo-Test/issues"
+  },
+  "homepage": "https://github.com/FacundoCastillo12/Memo-Test#readme",
+  "dependencies": {
+    "bootstrap": "^5.2.3",
+    "cypress-real-events": "^1.7.6"
+  },
+  "devDependencies": {
+    "cypress": "^12.5.1"
+  }
+}
